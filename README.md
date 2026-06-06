@@ -123,20 +123,33 @@ docker compose down            # 종료
 - `frontend` — [`frontend/Dockerfile`](frontend/Dockerfile) (Next.js standalone, 비루트 실행)
 - 프론트엔드는 백엔드 헬스체크가 통과(`condition: service_healthy`)한 뒤 기동됩니다.
 
+### 네트워킹: 같은 출처(same-origin) 프록시
+
+브라우저는 **프론트엔드 출처(3000) 하나로만 통신**합니다. `/api/*` 요청은 Next 서버가
+내부적으로 백엔드에 프록시합니다([`frontend/next.config.ts`](frontend/next.config.ts) `rewrites`).
+
+- 브라우저는 백엔드 주소를 몰라도 됨 → **CORS 불필요**
+- **Tailscale·ngrok·역방향 프록시 등으로 포트 3000만 외부에 노출**하면 백엔드 fetch가 동작
+  (백엔드 8000은 외부로 열 필요 없음)
+
 ### 운영 환경 변수
 
-| 변수 | 의미 | 기본값 |
-|------|------|--------|
-| `PUBLIC_API_URL` | 브라우저가 접근할 백엔드 주소 — **프론트 빌드 시 번들에 주입** | `http://localhost:8000` |
-| `ALLOWED_ORIGINS` | 백엔드 CORS 허용 출처(프론트 공개 주소) | `http://localhost:3000` |
+| 변수 | 서비스 | 의미 | 기본값 |
+|------|--------|------|--------|
+| `BACKEND_INTERNAL_URL` | frontend | Next 서버 → 백엔드 내부 주소 | compose: `http://backend:8000` |
+| `ALLOWED_ORIGINS` | backend | CORS 허용 출처 (직접 호출 시에만 필요) | `http://localhost:3000` |
 
-> 프론트엔드 API 주소는 클라이언트(브라우저)에서 호출되므로 빌드 타임에 고정됩니다.
-> 실제 배포 시:
-> ```bash
-> PUBLIC_API_URL=https://api.example.com \
-> ALLOWED_ORIGINS=https://app.example.com \
-> docker compose up --build
-> ```
+> 절대 주소로 백엔드를 **직접** 호출하고 싶다면(프록시 미사용), 프론트 빌드 시
+> `--build-arg NEXT_PUBLIC_API_URL=https://api.example.com` 를 주고 백엔드 `ALLOWED_ORIGINS`에
+> 프론트 공개 주소를 추가하세요.
+
+#### Tailscale로 외부 접속 예시
+
+```bash
+docker compose up -d --build      # 로컬에서 3000·8000 컨테이너 기동
+tailscale serve 3000              # 프론트엔드만 테일넷에 노출 (HTTPS)
+# 다른 기기 브라우저에서 https://<머신>.<테일넷>.ts.net 접속 → /api 는 자동 프록시됨
+```
 
 ### 개별 빌드 / 클라우드 배포
 
@@ -145,10 +158,10 @@ docker compose down            # 종료
 docker build -t filter-api .          # 컨텍스트 = 루트, db/ 포함 (DB_PATH=/app/db)
 docker run -p 8000:8000 filter-api
 
-# 프론트엔드만 (또는 Vercel에 frontend/ 디렉터리 그대로 배포)
+# 프론트엔드만 — 프록시 대상 백엔드 주소를 빌드 인자로
 docker build -t filter-web \
-  --build-arg NEXT_PUBLIC_API_URL=https://api.example.com ./frontend
-docker run -p 3000:3000 filter-web
+  --build-arg BACKEND_INTERNAL_URL=http://backend:8000 ./frontend
+docker run -p 3000:3000 -e BACKEND_INTERNAL_URL=http://backend:8000 filter-web
 ```
 
 이미지 크기(참고): 백엔드 ~309MB · 프론트엔드 ~280MB.

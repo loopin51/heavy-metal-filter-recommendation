@@ -38,9 +38,15 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_URL: ${PUBLIC_API_URL:-http://localhost:8000}
+        # 같은 출처 프록시: 브라우저는 /api/* 를 자기 출처(3000)로 호출 → Next가 백엔드로 전달.
+        # 덕분에 Tailscale 등으로 3000 하나만 열어도 백엔드 fetch가 동작한다.
+        NEXT_PUBLIC_API_URL: ""
         NEXT_PUBLIC_DB_VERSION: "1.0"
+        BACKEND_INTERNAL_URL: http://backend:8000
     image: filter-recommendation-web:1.0.0
+    environment:
+      # Next 서버 → 백엔드(컨테이너 네트워크) 프록시 대상
+      BACKEND_INTERNAL_URL: http://backend:8000
     ports:
       - "3000:3000"
     depends_on:

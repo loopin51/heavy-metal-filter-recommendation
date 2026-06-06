@@ -16,12 +16,15 @@ RUN npm install -g pnpm@11.5.2
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# NEXT_PUBLIC_* 변수는 빌드 시점에 번들에 주입된다 (브라우저에서 접근).
-# 배포 시 백엔드 공개 주소로 덮어쓸 것.
-ARG NEXT_PUBLIC_API_URL=http://localhost:8000
+# 기본은 같은 출처 프록시 방식:
+#   - NEXT_PUBLIC_API_URL 비움 → 브라우저는 /api/* 를 자기 출처로 호출
+#   - BACKEND_INTERNAL_URL → Next 서버가 백엔드로 프록시(rewrites). compose에선 http://backend:8000
+ARG NEXT_PUBLIC_API_URL=
 ARG NEXT_PUBLIC_DB_VERSION=1.0
+ARG BACKEND_INTERNAL_URL=http://localhost:8000
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 ENV NEXT_PUBLIC_DB_VERSION=${NEXT_PUBLIC_DB_VERSION}
+ENV BACKEND_INTERNAL_URL=${BACKEND_INTERNAL_URL}
 ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN pnpm build
@@ -33,6 +36,8 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
+# Next 서버 → 백엔드 프록시 주소 (compose에서 http://backend:8000 으로 덮어씀)
+ENV BACKEND_INTERNAL_URL=http://localhost:8000
 
 # 비루트 사용자로 실행
 RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -u 1001

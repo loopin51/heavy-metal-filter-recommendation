@@ -7,7 +7,10 @@ import type {
   ScenarioInfo,
 } from "./types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+// 기본은 빈 문자열 = 같은 출처(상대 경로). 브라우저가 /api/* 를 자기 출처로 호출하면
+// Next 서버(next.config.ts rewrites)가 백엔드로 프록시한다. → Tailscale/원격 접속에서도 동작.
+// 절대 주소를 쓰고 싶으면 NEXT_PUBLIC_API_URL 로 덮어쓸 수 있다(직접 호출, CORS 필요).
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
 
 const TIMEOUT_MS = 10_000;
 
