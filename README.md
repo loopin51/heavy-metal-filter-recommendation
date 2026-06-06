@@ -113,15 +113,20 @@ curl -X POST http://localhost:8000/api/recommend \
 
 ```bash
 docker compose up --build
-#   프론트엔드  http://localhost:3000
-#   백엔드 API  http://localhost:8000/docs
+#   접속: http://localhost:3000  (호스트엔 3000 포트만 열림)
 docker compose down            # 종료
 ```
 
 구성:
-- `backend` — [`Dockerfile`](Dockerfile) (빌드 컨텍스트 = 루트, `db/` 포함, gunicorn 4 workers)
-- `frontend` — [`frontend/Dockerfile`](frontend/Dockerfile) (Next.js standalone, 비루트 실행)
+- `backend` — [`Dockerfile`](Dockerfile) (빌드 컨텍스트 = 루트, `db/` 포함, gunicorn 4 workers).
+  **호스트에 포트를 게시하지 않고** Docker 내부 네트워크로만 노출(`expose: 8000`).
+- `frontend` — [`frontend/Dockerfile`](frontend/Dockerfile) (Next.js standalone, 비루트 실행).
+  호스트에 3000을 게시하며 `/api/*` 를 `backend:8000` 으로 프록시.
 - 프론트엔드는 백엔드 헬스체크가 통과(`condition: service_healthy`)한 뒤 기동됩니다.
+
+> 외부에 노출되는 포트는 **3000 하나뿐**입니다. 백엔드(8000)는 컨테이너 네트워크 내부에서만
+> 접근 가능합니다. Swagger 문서(`/docs`)가 필요하면 `docker compose exec backend ...` 로
+> 접근하거나, 잠깐 `docker run -p 8000:8000 filter-recommendation-api:1.0.0` 로 단독 기동하세요.
 
 ### 네트워킹: 같은 출처(same-origin) 프록시
 

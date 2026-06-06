@@ -14,8 +14,10 @@ services:
       context: .
       dockerfile: Dockerfile
     image: filter-recommendation-api:1.0.0
-    ports:
-      - "8000:8000"
+    # 호스트에 8000을 게시하지 않는다. frontend 컨테이너가 내부 네트워크(backend:8000)로만 접근.
+    # → 외부에는 frontend의 3000 포트 하나만 열림.
+    expose:
+      - "8000"
     environment:
       DB_PATH: /app/db
       MODEL_VERSION: "1.0"
