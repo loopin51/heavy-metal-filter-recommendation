@@ -1,0 +1,16 @@
+allowBuilds:
+  sharp: true
+  unrs-resolver: true
+
+onlyBuiltDependencies:
+  - sharp
+  - unrs-resolver
+  - "@tailwindcss/oxide"
+
+# 현재 OS/CPU용 네이티브 바이너리만 설치 (전 플랫폼 설치로 인한 ~1GB 절약)
+# Vercel·Docker 등 다른 환경은 각자 pnpm install 시 자기 플랫폼 바이너리를 받음
+supportedArchitectures:
+  os:
+    - current
+  cpu:
+    - current

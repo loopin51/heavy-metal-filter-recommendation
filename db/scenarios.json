@@ -1,0 +1,164 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created": "2026-06",
+    "description": "오염 상황 유형 5종 및 대표 중금속 프로파일"
+  },
+  "scenarios": [
+    {
+      "id": "industrial",
+      "label_kr": "산업 폐수",
+      "label_en": "Industrial Wastewater",
+      "icon": "ti-building-factory-2",
+      "description": "도금·염색·제련·반도체 등 제조업 공정 폐수",
+      "typical_metals": ["Cr6+", "Cu2+", "Zn2+", "Ni2+", "Pb2+", "Cd2+"],
+      "priority_metals": ["Cr6+", "Cu2+"],
+      "typical_pH_range": "3–9",
+      "typical_conc_profile": {
+        "Cr6+": "10–5000 mg/L (도금 폐수)",
+        "Cu2+": "5–1000 mg/L",
+        "Zn2+": "10–500 mg/L",
+        "Ni2+": "1–200 mg/L"
+      },
+      "regulatory_concerns_kr": [
+        "물환경보전법 제32조: 폐수 배출 허용기준 초과 시 과태료·영업정지",
+        "Cr(VI) 0.5 mg/L 이하 (폐수 배출 기준)",
+        "Cu 3 mg/L, Zn 5 mg/L, Ni 3 mg/L 이하"
+      ],
+      "recommended_filter_level": "high",
+      "special_notes": [
+        "Cr(VI) 함유 도금 폐수: 환원(Fe²⁺ 또는 SO₂) → 침전 → 필터 공정 적용",
+        "고농도 Cu(>100 mg/L): 이온교환 수지 전처리 고려",
+        "SS(부유물질) 높은 폐수: 침전조 전처리 필수"
+      ],
+      "reference_treatment_processes": [
+        "응집-침전 → 중화 → 다층 흡착 필터",
+        "이온교환 → 활성탄 → 멤브레인"
+      ]
+    },
+    {
+      "id": "mining",
+      "label_kr": "광산 배수 (AMD)",
+      "label_en": "Acid Mine Drainage",
+      "icon": "ti-pickaxe",
+      "description": "황화광물 산화로 생성된 산성 광산 배수 및 광미 침출수",
+      "typical_metals": ["Pb2+", "Zn2+", "Cd2+", "Cu2+", "As3+", "As5+", "Mn2+", "Fe2+"],
+      "priority_metals": ["Pb2+", "Zn2+", "As5+"],
+      "typical_pH_range": "2–5 (AMD 전형)",
+      "typical_conc_profile": {
+        "Pb2+": "0.1–200 mg/L",
+        "Zn2+": "10–500 mg/L",
+        "Cd2+": "0.01–50 mg/L",
+        "As5+": "0.1–10 mg/L",
+        "Fe2+": "10–500 mg/L (공존)"
+      },
+      "regulatory_concerns_kr": [
+        "광산피해방지법: 광해 방지 의무",
+        "폐광산 AMD 자연 발생 → 관할 지자체 처리 책임"
+      ],
+      "recommended_filter_level": "high",
+      "special_notes": [
+        "pH < 4: CaCO₃ 완충층 두께 20–30cm로 증대 권장",
+        "Fe²⁺/Mn²⁺ 공존: 산화-침전 전처리 후 필터 적용",
+        "As 포함 금광 AMD: MnO₂ + 철산화물 이중층 필수",
+        "패시브 트리트먼트(passive treatment): 석회석 배수로(limestone drain) + 다층 필터 조합"
+      ],
+      "reference_treatment_processes": [
+        "석회석 중화 → 산화 → 다층 흡착 필터 (PMC4148316 표준 공정)",
+        "알칼리성 기질 습지(Alkaline Substrate Wetland) 연계"
+      ]
+    },
+    {
+      "id": "agricultural",
+      "label_kr": "농업용수 오염",
+      "label_en": "Agricultural Water Contamination",
+      "icon": "ti-plant",
+      "description": "농약·비료 잔류, 폐기물 매립 침출, 관개용수 오염",
+      "typical_metals": ["As3+", "As5+", "Pb2+", "Cd2+", "Cu2+"],
+      "priority_metals": ["As5+", "Cd2+"],
+      "typical_pH_range": "5.5–7.5",
+      "typical_conc_profile": {
+        "As5+": "0.01–1 mg/L",
+        "Cd2+": "0.001–0.1 mg/L",
+        "Pb2+": "0.01–1 mg/L",
+        "Cu2+": "0.05–5 mg/L (살조제 과잉 사용 지역)"
+      },
+      "regulatory_concerns_kr": [
+        "농업용수 수질기준 (농어촌정비법 시행규칙): Cd 0.01 mg/L, As 0.05 mg/L",
+        "이타이이타이병 교훈: Cd 오염 농지·관개수 엄격 관리"
+      ],
+      "recommended_filter_level": "low",
+      "special_notes": [
+        "As 자연 용출 지역: 철산화물층 추가 필수",
+        "농약 유기 오염물 동반: 활성탄층 두께 증대",
+        "저농도 오염이므로 기본 필터로 충분한 경우 많음"
+      ],
+      "reference_treatment_processes": [
+        "느린 모래 여과(SSF) → 철산화물 흡착",
+        "빗물 정화 + 다층 모래-자갈 필터 (지역사회 규모)"
+      ]
+    },
+    {
+      "id": "groundwater",
+      "label_kr": "지하수 오염",
+      "label_en": "Groundwater Contamination",
+      "icon": "ti-droplet",
+      "description": "자연 용출, 매립지 침출, 산업시설 누출로 인한 지하수 오염",
+      "typical_metals": ["As3+", "As5+", "Pb2+", "Mn2+", "Fe2+", "Ni2+"],
+      "priority_metals": ["As5+", "Pb2+"],
+      "typical_pH_range": "6.5–8.5",
+      "typical_conc_profile": {
+        "As5+": "0.001–1 mg/L (남아시아 고농도 지역 최대 3 mg/L)",
+        "Pb2+": "0.001–0.5 mg/L",
+        "Mn2+": "0.05–5 mg/L (공존)",
+        "Fe2+": "0.1–20 mg/L (공존)"
+      },
+      "regulatory_concerns_kr": [
+        "지하수법 시행규칙 [별표 1] 지하수 수질 기준",
+        "먹는물로 이용 시 음용수 기준 적용: As 0.01 mg/L, Pb 0.01 mg/L"
+      ],
+      "recommended_filter_level": "low",
+      "special_notes": [
+        "pH 7–8.5 → 수산화물 침전 경계 구간, 응집 전처리 고려",
+        "Fe²⁺/Mn²⁺ 공존 → 산화여과 전처리 필수 (필터 막힘 방지)",
+        "As(III) vs As(V) 구분 검사 후 MnO₂층 적용 여부 결정",
+        "소규모 지역사회 급수: 점오염원 없는 경우 기본 2–3층 필터 충분"
+      ],
+      "reference_treatment_processes": [
+        "폭기(aeration) → 모래여과 → 철산화물 흡착",
+        "간단한 다층 가정용 필터(CAWST V10 등)"
+      ]
+    },
+    {
+      "id": "urban",
+      "label_kr": "도시 비점오염",
+      "label_en": "Urban Stormwater Runoff",
+      "icon": "ti-building-skyscraper",
+      "description": "강우 시 도로·주차장·지붕·건설현장에서 발생하는 비점오염 유출수",
+      "typical_metals": ["Zn2+", "Cu2+", "Pb2+", "Ni2+"],
+      "priority_metals": ["Zn2+", "Cu2+"],
+      "typical_pH_range": "6–8",
+      "typical_conc_profile": {
+        "Zn2+": "0.05–5 mg/L (타이어 마모, 도금 구조물)",
+        "Cu2+": "0.01–2 mg/L (지붕 재질, 차량)",
+        "Pb2+": "0.01–1 mg/L (납 페인트, 구형 배관)",
+        "Ni2+": "0.001–0.5 mg/L"
+      },
+      "regulatory_concerns_kr": [
+        "비점오염저감시설 설치 의무 (물환경보전법 제53조)",
+        "강우 초기 세척효과(First Flush) 집중 관리 필요"
+      ],
+      "recommended_filter_level": "low",
+      "special_notes": [
+        "우기 집중 고유량 → HLR 여유분 확보 설계 (기본 설계의 1.5–2배)",
+        "비강우기 건조 방지: 모래층 함수율 유지 필요",
+        "초기강우(first 5mm) 집중 처리 중요",
+        "SS 높은 경우 지오텍스타일(geotextile) 전처리층 추가"
+      ],
+      "reference_treatment_processes": [
+        "강우 여과 시스템(Bioretention/Rain Garden) + 다층 필터",
+        "침투도랑(Infiltration Trench) 연계"
+      ]
+    }
+  ]
+}

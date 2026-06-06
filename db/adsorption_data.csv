@@ -1,0 +1,56 @@
+id,material_id,metal_id,qmax_mg_g,qmax_column_mg_g,removal_pct,pH_opt,pH_min,pH_max,C0_mg_L,dose_g_L,t_eq_min,temp_C,kinetics_model,isotherm_model,conditions,data_quality,reference_id,notes
+ADS-001,chitosan,Pb2+,815,,98,5.0,4.0,7.0,200,2.0,360,25,pseudo-second-order,Langmuir,batch,high,BABEL2003,가장 널리 인용되는 키토산 Pb 흡착 벤치마크값. 비드 형태.
+ADS-002,chitosan,Cr6+,273,,95,3.5,2.0,5.0,200,2.0,480,25,pseudo-second-order,Langmuir,batch,high,BABEL2003,산성 조건에서 –NH₃⁺ 형성으로 Cr(VI) 음이온 정전기 흡착. pH > 6에서 급격히 감소.
+ADS-003,chitosan,Cd2+,250,,92,6.0,4.0,8.0,200,2.0,360,25,pseudo-second-order,Langmuir,batch,high,BABEL2003,Pb보다 낮은 흡착용량 (이온반경 차이). 배치 기준.
+ADS-004,chitosan,Cu2+,200,,97,5.5,4.0,8.0,100,1.5,240,25,pseudo-second-order,Langmuir,batch,medium,PMC7321104,아미노기와 구리 이온의 강한 킬레이트 결합. pH 6에서 최대.
+ADS-005,chitosan,Hg2+,700,,96,6.0,4.0,8.0,150,2.0,480,25,pseudo-second-order,Langmuir,batch,medium,PMC12566221,연질 Lewis acid Hg²⁺와 아미노기의 강한 친화성. 정확한 값은 연구마다 상이 (500–800 mg/g 범위).
+ADS-006,chitosan,Zn2+,150,,90,6.0,5.0,8.0,100,2.0,300,25,pseudo-second-order,Langmuir,batch,medium,PMC8398132,Pb·Cu·Cd에 비해 낮은 흡착용량.
+ADS-007,chitosan,Ni2+,100,,85,6.5,5.0,8.0,100,2.0,300,25,pseudo-second-order,Freundlich,batch,medium,PMC8398132,Ni²⁺은 경질 Lewis acid; 킬레이트 친화성 상대적으로 낮음.
+ADS-008,zeolite_natural,Pb2+,175,,98,5.5,4.0,7.0,100,5.0,120,25,pseudo-second-order,Langmuir,batch,high,PMC10511742,클리놉틸로라이트 기준. 이온교환 선택성 계열에서 Pb²⁺ 1위.
+ADS-009,zeolite_natural,Cd2+,137,,92,6.0,4.0,8.0,100,5.0,180,25,pseudo-second-order,Langmuir,batch,high,PMC10511742,Babel et al. 인용 기준.
+ADS-010,zeolite_natural,Cu2+,70,,88,5.5,4.0,7.0,100,5.0,180,25,pseudo-second-order,Langmuir,batch,medium,PMC8398132,이온반경과 수화에너지 차이로 Pb·Cd보다 낮음.
+ADS-011,zeolite_natural,Zn2+,85,,87,6.0,4.0,7.0,100,5.0,180,25,pseudo-second-order,Langmuir,batch,medium,PMC4148316,광산 배수 적용 리뷰 값.
+ADS-012,zeolite_natural,Ni2+,55,,80,6.5,5.0,7.5,100,5.0,240,25,pseudo-second-order,Freundlich,batch,medium,PMC8398132,경질 Lewis acid; 이온교환 친화성 낮음.
+ADS-013,zeolite_natural,Cr3+,60,,82,5.0,3.5,6.5,100,5.0,240,25,pseudo-second-order,Langmuir,batch,low,PMC8398132,Cr³⁺만 가능; Cr(VI) 음이온은 제올라이트로 제거 불가.
+ADS-014,zeolite_4a,Pb2+,416.6,,99,6.0,4.0,8.0,200,3.0,60,25,pseudo-second-order,Langmuir,batch,high,LIU2022,카올린→4A 제올라이트 전환(homologous transformation). 초고속 반응 (초기 속도상수 409.84).
+ADS-015,zeolite_4a,Pb2+,400.2,,99,6.0,4.0,8.0,200,3.0,60,25,pseudo-second-order,Langmuir,batch,high,LIU2022,Na-P1 타입 제올라이트 기준 (4A와 동일 논문). 초기 속도상수 617.28.
+ADS-016,activated_carbon,Pb2+,100,,95,6.0,4.0,8.0,100,2.0,180,25,pseudo-second-order,Langmuir,batch,medium,PMC8398132,GAC(야자각 기반) 기준. 표면 카르복실기와 착화.
+ADS-017,activated_carbon,Hg2+,150,,96,6.5,5.0,8.0,50,2.0,240,25,pseudo-second-order,Freundlich,batch,medium,PMC8398132,황 함침(S-impregnated) AC에서는 300+ mg/g 가능.
+ADS-018,activated_carbon,Cr6+,100,,92,3.0,2.0,5.0,100,3.0,360,25,pseudo-second-order,Langmuir,batch,medium,PMC8398132,환원 + 흡착 복합 메커니즘. pH 낮을수록 효율 증가.
+ADS-019,activated_carbon,Cu2+,65,,88,5.5,4.0,7.0,100,2.0,180,25,pseudo-second-order,Freundlich,batch,medium,Bailey2014,물리흡착 우세.
+ADS-020,activated_carbon,As5+,20,,70,5.0,3.0,7.0,10,5.0,360,25,pseudo-second-order,Freundlich,batch,low,PMC8398132,As 음이온은 활성탄에서 제거 효율 낮음; 철산화물 층 선행 권장.
+ADS-021,biochar_pine,Cu2+,60.86,,92,6.0,5.0,8.0,150,3.0,300,25,pseudo-second-order,Langmuir,batch,high,ACSOMEGA2024,"바이오차-슬러지 복합체(TBS, 1:4 질량비). SEM·FTIR 특성분석 포함."
+ADS-022,biochar_pine,Pb2+,46.98,,88,6.0,5.0,8.0,150,3.0,300,25,pseudo-second-order,Langmuir,batch,high,ACSOMEGA2024,TBS 복합 바이오차 기준.
+ADS-023,biochar_pine,As5+,,3.49,85,6.5,5.0,8.0,10,,,25,,,column,high,PMC10890072,활성화 바이오차(active BC) 컬럼 기준. 미활성화 BC는 0.04 mg/g으로 매우 낮음.
+ADS-024,biochar_pine,Cd2+,38.0,,80,6.0,5.0,8.0,100,3.0,300,25,pseudo-second-order,Freundlich,batch,medium,PMC10511742,아보카도·쓴오렌지·호두나무잎 바이오차 평균값 기준.
+ADS-025,biochar_pine,Zn2+,40.0,,78,6.0,5.0,7.5,100,3.0,240,25,pseudo-second-order,Freundlich,batch,medium,PMC10890072,리뷰 기반 추정값.
+ADS-026,biochar_modified,Pb2+,,5.8,94,5.0,4.0,7.0,150,,,25,,,column,high,PMC10890072,소나무 바이오차 + 키토산 변성(CMBC). 컬럼 조건 C₀=150 mg/L.
+ADS-027,biochar_modified,Pb2+,32.23,,97,5.0,4.0,7.0,200,1.0,360,25,pseudo-n-order,Langmuir,batch,high,PMC9457549,"BC-CS 4:1 비율, pH 5. HNO₃ 재생 시 Pb 재생율 99.13%."
+ADS-028,biochar_modified,Cu2+,35.0,,93,5.5,4.0,7.5,150,1.0,360,25,pseudo-n-order,Langmuir,batch,medium,PMC9457549,BC-CS 복합체 기준 추정.
+ADS-029,iron_oxide,As5+,75,,95,6.5,5.0,8.0,5,2.0,360,25,pseudo-second-order,Langmuir,batch,medium,PMC8398132,ferrihydrite 기준 배치 실험값. 실제 컬럼은 3.49 mg/g (ADS-023 참고).
+ADS-030,iron_oxide,As3+,30,,65,6.5,4.0,8.0,5,2.0,720,25,pseudo-second-order,Freundlich,batch,medium,PMC10890072,As(III)은 중성분자; As(V)보다 제거 어려움. MnO₂ 산화 전처리 강력 권장.
+ADS-031,iron_oxide,Cr6+,30,,90,3.5,2.0,6.0,50,3.0,480,25,pseudo-second-order,Langmuir,batch,medium,PMC8398132,Fe²⁺ 함유 시 환원 → Cr³⁺ 침전 복합 메커니즘.
+ADS-032,iron_oxide,Pb2+,50,,92,5.5,4.0,7.0,100,2.0,240,25,pseudo-second-order,Langmuir,batch,medium,PMC10890072,표면 착화에 의한 Pb²⁺ 제거.
+ADS-033,calcium_carbonate,Pb2+,15,,75,N/A (완충 목적),적용: 유입 pH < 5,유출 pH → 5.5–7.0,50,10.0,120,25,,,batch,medium,RIOS2008,주 기능은 pH 조정 → 후속 흡착층 성능 극대화. 직접 흡착 용량은 낮음.
+ADS-034,hydroxyapatite,Cu2+,111.35,,97,8.1,5.0,10.0,50,3.0,60,25,pseudo-second-order,Langmuir,batch,high,PMC13013057,C-ZLCH(탄화 제올라이트/키토산 복합체). 60분 이내 평형 도달.
+ADS-035,hydroxyapatite,Pb2+,200,,99,6.5,5.0,9.0,100,2.0,120,25,pseudo-second-order,Langmuir,batch,medium,PMC8398132,Ca²⁺ ↔ Pb²⁺ 이온교환 + 인산납 침전. Pb에 대한 선택성 매우 높음.
+ADS-036,hydroxyapatite,Cu2+,,,97.17,6.0,5.0,8.0,50,,35,25,pseudo-second-order,Freundlich,batch,high,PMC10610860,PLA@CS/HAP 3D프린팅 복합 필터. 5사이클 후에도 97.17% 유지. 35분 내 80.8% 제거.
+ADS-037,mno2,As3+,,,95,5.5,4.0,7.0,1,2.0,60,25,,,batch,medium,PMC8398132,As(III)을 As(V)로 산화(반응식: As(III)+MnO₂→As(V)+Mn²⁺). 후속 철산화물층과 조합 필수.
+ADS-038,mno2,Pb2+,95,,90,6.0,4.5,8.0,100,2.5,240,25,pseudo-second-order,Langmuir,batch,medium,PMC8398132,표면 착화 및 이온교환.
+ADS-039,mno2,Cd2+,50,,82,6.5,5.0,8.0,100,3.0,300,25,pseudo-second-order,Freundlich,batch,low,PMC8398132,MnO₂의 Cd 흡착은 주로 이온교환.
+ADS-040,chitosan,As5+,35,,72,4.0,3.0,6.0,10,3.0,480,25,pseudo-second-order,Freundlich,batch,low,PMC12566221,산성 조건(–NH₃⁺)에서 As(V) 음이온 정전기 흡착. 철산화물보다 효율 낮음.
+ADS-041,biochar_pine,Pb2+,41.32,,85,6.5,5.0,8.0,100,1.5,180,25,pseudo-second-order,Freundlich,batch,high,PMC10511742,"아보카도·쓴오렌지·호두잎 바이오차 황산 활성화. 최적 투여량 1.5 g/L, 평형시간 180분."
+ADS-042,biochar_pine,Zn2+,38.17,,78,6.0,5.0,7.5,100,1.5,180,25,pseudo-second-order,Freundlich,batch,high,PMC10511742,동일 논문 기준.
+ADS-043,biochar_pine,Cu2+,34.97,,80,6.0,5.0,7.5,100,1.5,180,25,pseudo-second-order,Freundlich,batch,high,PMC10511742,동일 논문 기준.
+ADS-044,biochar_pine,Cd2+,43.1,,83,6.0,5.0,7.5,100,1.5,180,25,pseudo-second-order,Freundlich,batch,high,PMC10511742,동일 논문 기준.
+ADS-045,biochar_modified,Co2+,,,85,6.0,5.0,8.0,50,2.0,360,25,pseudo-n-order,Langmuir,batch,medium,PMC4148316,자기성 생체복합체(magnetic biosorbent) 기준 Co 흡착. 218 μmol/g (≈12.8 mg/g).
+ADS-046,zeolite_natural,Pb2+,160,,95,5.0,3.5,7.0,200,8.0,240,25,pseudo-second-order,Langmuir,column,medium,RIOS2008,AMD 처리 컬럼 실험. 배치 대비 낮은 qmax는 정상.
+ADS-047,iron_oxide,Cu2+,40,,85,6.0,4.0,7.5,50,3.0,240,25,pseudo-second-order,Langmuir,batch,low,PMC8398132,Cu²⁺ 양이온이므로 pH > PZC(7.5) 조건에서 표면착화.
+ADS-048,chitosan,Cu2+,,,97,6.0,4.0,8.0,50,1.0,,25,,,batch,high,PMC10610860,PLA@CS/HAP 필터 cs 성분 기여. pH 6.0~6.4 최적; pH 2-4 최저.
+ADS-049,chitosan,Cd2+,,,97,6.0,4.0,8.0,100,1.5,360,25,pseudo-second-order,Langmuir,batch,medium,PMC8398132,pH 4→6 증가시 제거율 일정 97% 유지 보고.
+ADS-050,biochar_modified,Cd2+,28.0,,85,6.0,4.5,8.0,100,1.0,360,25,pseudo-n-order,Langmuir,batch,medium,PMC9457549,BC-CS 복합체 Cd 흡착 추정값.
+ADS-051,activated_carbon,Pb2+,41.32,,86,6.5,4.0,8.0,100,1.5,180,25,pseudo-second-order,Freundlich,batch,medium,PMC10511742,활성탄(황산 활성화) Pb 흡착. Freundlich 모델 적합.
+ADS-052,iron_oxide,As5+,,3.49,88,6.5,5.0,8.0,10,,,25,,,column,high,PMC10890072,활성화 바이오차(철 코팅) 컬럼 기준. 미활성화 대비 87배 향상.
+ADS-053,chitosan,Cr6+,104.75,,92,4.0,3.0,6.0,50,2.0,90,25,pseudo-second-order,Langmuir,batch,high,PMC13013057,C-ZLCH(탄화 제올라이트/키토산) Cr(VI). 90분 내 평형. pH 9.6 최적 (이 연구 특이값 — 일반적으로 산성이 최적).
+ADS-054,zeolite_natural,Cd2+,125,,90,6.0,4.0,8.0,100,5.0,180,25,pseudo-second-order,Langmuir,batch,medium,PMC4148316,AMD 처리 문헌 평균값.
+ADS-055,biochar_modified,Zn2+,38.0,,82,6.0,5.0,7.5,100,1.5,300,25,pseudo-n-order,Freundlich,batch,low,PMC9457549,BC-CS 복합체 Zn 추정값. 검증 필요.

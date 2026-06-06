@@ -1,0 +1,311 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created": "2026-06",
+    "description": "pH, 오염도 수준, 중금속 종류에 따른 필터 층 구성 규칙",
+    "basis": "adsorption_data.json 및 PMC4148316, PMC8398132, PMC10890072 리뷰 문헌"
+  },
+
+  "base_layer_order": {
+    "description": "물 흐름 방향(위→아래) 기본 순서. 항목 순서가 레이어 순서를 결정.",
+    "layers": [
+      {
+        "slot": 1,
+        "id": "pH_buffer_slot",
+        "material_id": "calcium_carbonate",
+        "conditional": true,
+        "condition": "pH == 'acidic'",
+        "mandatory": false,
+        "note": "산성 조건에서만 최전방 배치"
+      },
+      {
+        "slot": 2,
+        "id": "oxidation_slot",
+        "material_id": "mno2",
+        "conditional": true,
+        "condition": "As3+ in metals",
+        "mandatory": false,
+        "note": "As(III) 존재 확인 시만 배치; As(V) 단독은 불필요"
+      },
+      {
+        "slot": 3,
+        "id": "prefilter_slot",
+        "material_id": "sand",
+        "conditional": false,
+        "mandatory": true,
+        "note": "항상 포함"
+      },
+      {
+        "slot": 4,
+        "id": "anion_adsorption_slot",
+        "material_id": "iron_oxide",
+        "conditional": true,
+        "condition": "any(['As3+','As5+','Cr6+'] in metals)",
+        "mandatory": false,
+        "note": "비소·6가 크롬 음이온 흡착 특화층"
+      },
+      {
+        "slot": 5,
+        "id": "cation_exchange_slot",
+        "material_id": "zeolite_natural",
+        "conditional": false,
+        "mandatory": true,
+        "note": "양이온 중금속 이온교환 주 흡착층. 항상 포함."
+      },
+      {
+        "slot": 6,
+        "id": "broad_adsorption_slot",
+        "material_id": "activated_carbon",
+        "conditional": false,
+        "mandatory": true,
+        "note": "유기물·중금속 광역 흡착. 항상 포함. Hg 존재 시 우선순위 상향."
+      },
+      {
+        "slot": 7,
+        "id": "chelation_slot",
+        "material_id": "chitosan",
+        "conditional": true,
+        "condition": "contamination_level in ['medium','high']",
+        "mandatory": false,
+        "note": "오염도 보통 이상에서 추가. 킬레이트 고용량 흡착."
+      },
+      {
+        "slot": 8,
+        "id": "advanced_slot",
+        "material_id": "biochar_modified",
+        "conditional": true,
+        "condition": "contamination_level == 'high'",
+        "mandatory": false,
+        "note": "오염도 높음에서만 추가. 다기능 복합 흡착."
+      },
+      {
+        "slot": 9,
+        "id": "support_slot",
+        "material_id": "gravel",
+        "conditional": false,
+        "mandatory": true,
+        "note": "최하단 지지·배수층. 항상 포함."
+      }
+    ]
+  },
+
+  "contamination_level_rules": {
+    "description": "오염도 수준별 필터 구성 변경 규칙",
+    "levels": {
+      "low": {
+        "label": "낮음",
+        "description": "기본 4층 필터",
+        "mandatory_materials": ["sand", "zeolite_natural", "activated_carbon", "gravel"],
+        "conditional_additions": [],
+        "estimated_removal_efficiency": "85–95%",
+        "applicable_initial_conc_mg_L": "< 5",
+        "notes": "음용수·지하수의 경미한 오염. 주기적 재생만으로 충분."
+      },
+      "medium": {
+        "label": "보통",
+        "description": "기본 4층 + 키토산층",
+        "mandatory_materials": ["sand", "zeolite_natural", "activated_carbon", "chitosan", "gravel"],
+        "conditional_additions": [],
+        "estimated_removal_efficiency": "95–99%",
+        "applicable_initial_conc_mg_L": "5–100",
+        "notes": "도시 비점오염·경미한 산업폐수. 키토산 킬레이트 착화로 잔류 중금속 제거."
+      },
+      "high": {
+        "label": "높음",
+        "description": "기본 4층 + 키토산층 + 바이오차층",
+        "mandatory_materials": ["sand", "zeolite_natural", "activated_carbon", "chitosan", "biochar_modified", "gravel"],
+        "conditional_additions": [],
+        "estimated_removal_efficiency": "99%+",
+        "applicable_initial_conc_mg_L": "> 100",
+        "notes": "산업 폐수·광산 배수 고농도 오염. 다층 다기능으로 복합 중금속 동시 처리."
+      }
+    }
+  },
+
+  "ph_rules": {
+    "description": "pH 범위별 필터 구성 수정 및 경고 규칙",
+    "ranges": {
+      "acidic": {
+        "label": "산성",
+        "pH_range": "< 5",
+        "action": "prepend_layer",
+        "add_material": "calcium_carbonate",
+        "position": "slot_1",
+        "warning": null,
+        "info_message": "탄산칼슘(석회석) 완충층이 첫 번째 레이어로 추가됩니다. 산성 유입수(pH<5)를 5.5–7.0으로 조정하여 후속 흡착층의 성능을 극대화합니다.",
+        "scientific_basis": "pH < 5에서는 이온교환 소재(제올라이트)와 생물학적 흡착제(키토산)의 효율이 급격히 감소. 활성탄 표면 관능기도 영향 받음. (PMC4148316, RIOS2008)",
+        "additional_recommendation": "철산화물층에서 Fe³⁺ 용출 발생 가능 → 유출수 Fe 농도 모니터링 권장"
+      },
+      "neutral": {
+        "label": "약산성~중성",
+        "pH_range": "5–7",
+        "action": "none",
+        "add_material": null,
+        "warning": null,
+        "info_message": "기본형 필터 구성. 대부분의 흡착 소재가 최적 성능을 발휘하는 pH 범위입니다.",
+        "scientific_basis": "pH 5–7 범위가 제올라이트 이온교환, 키토산 킬레이트, 활성탄 착화 등 모든 메커니즘의 최적 범위. (PMC7321104, PMC8398132)"
+      },
+      "alkaline": {
+        "label": "염기성",
+        "pH_range": "> 8",
+        "action": "warn",
+        "add_material": null,
+        "warning": "⚠️ 염기성 조건 — 금속 수산화물 침전 가능성",
+        "warning_detail": [
+          "pH 8 이상에서 Fe²⁺, Mn²⁺, Al³⁺가 M(OH)ₙ 형태로 급격히 침전하여 필터 공극을 막을 수 있습니다.",
+          "Pb, Cu, Zn, Cd도 pH 8–9에서 수산화물·탄산염으로 침전 시작.",
+          "침전물이 흡착층에 누적되면 투과율 감소 및 필터 수명 단축.",
+          "강력 권장: 필터 투입 전 응집–침전(coagulation–flocculation) 전처리 공정 적용.",
+          "교체 주기를 일반 조건 대비 30–50% 단축하여 운영할 것."
+        ],
+        "scientific_basis": "대부분 중금속의 Ksp(수산화물) 조건에 따라 pH 8 이상에서 침전이 지배적 제거 메커니즘. 필터보다 화학적 침전조가 더 효과적인 구간. (PMC8398132, BAILEY2014)"
+      }
+    }
+  },
+
+  "metal_specific_rules": {
+    "description": "중금속 종류에 따른 특화층 추가 및 주의사항",
+    "rules": {
+      "As3+": {
+        "action": "add_layers",
+        "add_materials": ["mno2", "iron_oxide"],
+        "positions": ["slot_2", "slot_4"],
+        "reason": "As(III)는 중성 분자(H₃AsO₃)로 이온교환·표면착화 어려움 → MnO₂로 As(V)로 산화 후 철산화물 흡착",
+        "warning": "As(III) 존재 확인 시 MnO₂ 산화층이 필수; 생략 시 제거율 50% 미만으로 급감",
+        "detection_note": "As(III) vs As(V) 구분 분석 필요 (현장 스트립 테스트 또는 HG-AAS)"
+      },
+      "As5+": {
+        "action": "add_layer",
+        "add_materials": ["iron_oxide"],
+        "positions": ["slot_4"],
+        "reason": "As(V)(HAsO₄²⁻)는 음이온; 철산화물 ≡FeOH와 내권 이성분자 핵결합으로 효과적 제거",
+        "warning": null
+      },
+      "Cr6+": {
+        "action": "add_layer",
+        "add_materials": ["iron_oxide"],
+        "positions": ["slot_4"],
+        "reason": "Cr(VI)(CrO₄²⁻)는 음이온; 산성 조건에서 철산화물 환원-흡착 메커니즘",
+        "warning": "Cr(VI) 제거는 pH 3–6에서 최적. pH > 6에서 효율 급감. 철산화물층 앞에 pH 조정 필요 시 HCl 투입 고려.",
+        "additional": "키토산층도 산성(pH 3–5)에서 Cr(VI) 음이온 정전기 흡착 가능"
+      },
+      "Hg2+": {
+        "action": "boost_layer",
+        "boost_material": "activated_carbon",
+        "reason": "무기수은(Hg²⁺)은 활성탄 표면착화에서 효과적; 유기수은(methylmercury)도 동시 제거",
+        "recommendation": "S-impregnated(황 함침) 활성탄 사용 시 Hg 제거 효율 2–3배 향상",
+        "additional": "키토산 아미노기도 Hg²⁺와 강한 킬레이트 형성 (연질 Lewis acid 특성)"
+      },
+      "Pb2+": {
+        "action": "none",
+        "reason": "기본 필터(제올라이트+키토산)에서 최고 흡착 선택성 보유. 추가층 불필요.",
+        "note": "오염도 높음 + Pb 존재 시 키토산층 두께 20cm로 증대 권장"
+      },
+      "Cu2+": {
+        "action": "none",
+        "reason": "기본 필터에서 충분히 제거 가능. 고농도(>100 mg/L) 시 키토산 추가."
+      },
+      "Cd2+": {
+        "action": "none",
+        "reason": "제올라이트+키토산 기본층으로 충분. 단, Cd는 Pb보다 이온교환 선택성 낮아 고농도에서 키토산 필수."
+      },
+      "Zn2+": {
+        "action": "none",
+        "reason": "기본 필터 충분. Pb 공존 시 Pb 우선 흡착으로 Zn 제거 효율 감소 가능."
+      },
+      "Ni2+": {
+        "action": "none",
+        "reason": "제올라이트 선택성 낮으므로 키토산층 중요. 오염도 보통 이상 권장."
+      },
+      "Cr3+": {
+        "action": "none",
+        "reason": "양이온 Cr³⁺는 기본 이온교환층으로 처리 가능. pH 6 초과 시 Cr(OH)₃ 침전으로 자연 제거."
+      }
+    }
+  },
+
+  "scenario_adjustments": {
+    "description": "오염 상황별 필터 운영 파라미터 조정",
+    "scenarios": {
+      "industrial": {
+        "typical_pH": "3–8 (공정 따라 상이)",
+        "typical_concentration_mg_L": "10–5000",
+        "recommended_HLR_m_h": "1–3 (저속 운영 권장)",
+        "special_considerations": [
+          "복합 중금속 혼합 오염 빈번",
+          "부유물질(SS) 높은 경우 전처리 응집조 필요",
+          "Cr(VI) 포함 도금 폐수는 별도 환원 전처리 공정 검토"
+        ]
+      },
+      "mining": {
+        "typical_pH": "2–5 (AMD 산성)",
+        "typical_concentration_mg_L": "0.1–500",
+        "recommended_HLR_m_h": "2–5",
+        "special_considerations": [
+          "pH < 4이면 CaCO₃ 완충층 두께 20–30cm로 증대",
+          "Fe²⁺/Mn²⁺ 공존 빈번 → 산화·침전 전처리 필요",
+          "As 포함 금광 배수는 MnO₂+철산화물 이중층 필수"
+        ]
+      },
+      "agricultural": {
+        "typical_pH": "5.5–7.5",
+        "typical_concentration_mg_L": "0.01–5",
+        "recommended_HLR_m_h": "5–10",
+        "special_considerations": [
+          "농약·유기물 동반 → 활성탄층 두께 증대",
+          "As 함유 농약 잔류 주의 (철산화물층 추가 고려)"
+        ]
+      },
+      "groundwater": {
+        "typical_pH": "6.5–8.5",
+        "typical_concentration_mg_L": "0.001–1",
+        "recommended_HLR_m_h": "3–8",
+        "special_considerations": [
+          "As 자연 용출 빈번 (As(III)/As(V) 구분 필요)",
+          "Fe/Mn 공존 시 산화 여과 전처리 권장",
+          "염기성(pH>8) 지하수 — 수산화물 침전 전처리 필요"
+        ]
+      },
+      "urban": {
+        "typical_pH": "6–8",
+        "typical_concentration_mg_L": "0.01–10",
+        "recommended_HLR_m_h": "5–12",
+        "special_considerations": [
+          "우기 비점오염 시 고유량 처리 필요",
+          "도로 타이어 마모 → Zn 높음",
+          "주차장 유출 → Cu, Zn, Pb 복합"
+        ]
+      }
+    }
+  },
+
+  "layer_thickness_recommendations_cm": {
+    "calcium_carbonate": {"min": 10, "max": 15, "high_load": 20},
+    "mno2": {"min": 5, "max": 10, "high_load": 12},
+    "sand": {"min": 20, "max": 30, "high_load": 30},
+    "iron_oxide": {"min": 10, "max": 15, "high_load": 20},
+    "zeolite_natural": {"min": 15, "max": 25, "high_load": 30},
+    "activated_carbon": {"min": 15, "max": 20, "high_load": 25},
+    "chitosan": {"min": 10, "max": 15, "high_load": 20},
+    "biochar_modified": {"min": 10, "max": 20, "high_load": 25},
+    "gravel": {"min": 10, "max": 15, "high_load": 15}
+  },
+
+  "regeneration_schedule": {
+    "description": "운전 조건별 재생 및 교체 주기 (일반 가이드라인)",
+    "low_load": {
+      "sand": "역세척 주 1회",
+      "zeolite_natural": "NaCl 세척 3–6개월",
+      "activated_carbon": "화학세척 6–12개월",
+      "chitosan": "HNO₃ 세척 3–6개월",
+      "biochar_modified": "HCl 세척 3–6개월"
+    },
+    "high_load": {
+      "sand": "역세척 주 2–3회",
+      "zeolite_natural": "NaCl 세척 1–2개월",
+      "activated_carbon": "화학세척 3–6개월 또는 열재생 연 1회",
+      "chitosan": "HNO₃ 세척 1–3개월",
+      "biochar_modified": "HCl 세척 1–2개월"
+    }
+  }
+}

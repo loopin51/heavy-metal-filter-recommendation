@@ -1,0 +1,49 @@
+# 중금속 흡착 필터 추천 서비스 — 백엔드 + 프론트엔드 통합 실행
+#
+# 로컬 실행:
+#   docker compose up --build
+#   → 프론트엔드 http://localhost:3000 · 백엔드 http://localhost:8000/docs
+#
+# 운영 배포 시 아래 값을 실제 공개 주소로 바꾸세요(.env 또는 환경 변수):
+#   PUBLIC_API_URL   : 브라우저가 접근할 백엔드 주소 (프론트 빌드에 주입됨)
+#   ALLOWED_ORIGINS  : 백엔드 CORS 허용 출처(프론트 공개 주소)
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: filter-recommendation-api:1.0.0
+    ports:
+      - "8000:8000"
+    environment:
+      DB_PATH: /app/db
+      MODEL_VERSION: "1.0"
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:3000}
+      LOG_LEVEL: INFO
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request,sys; sys.exit(0) if urllib.request.urlopen('http://localhost:8000/api/health').status==200 else sys.exit(1)"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${PUBLIC_API_URL:-http://localhost:8000}
+        NEXT_PUBLIC_DB_VERSION: "1.0"
+    image: filter-recommendation-web:1.0.0
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped

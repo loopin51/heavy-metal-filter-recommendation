@@ -1,0 +1,36 @@
+[project]
+name = "filter-recommendation-api"
+version = "1.0.0"
+description = "중금속 흡착 필터 추천 API"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn>=0.32",
+    "pydantic>=2.9",
+    "gunicorn>=23.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "httpx>=0.27",
+    "ruff>=0.7",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint.per-file-ignores]
+# 테스트는 요청서(dev_request.md)의 코드를 그대로 사용 — `l` 변수명 허용
+"backend/tests/*" = ["E741"]
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
+addopts = "-q"
+
+# The application package is `backend`. Run from the repo root, e.g.:
+#   uv run python -m uvicorn backend.main:app --reload --port 8000
+#   uv run python -m pytest
+[tool.uv]
+package = false

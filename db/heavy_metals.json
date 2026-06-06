@@ -1,0 +1,416 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created": "2026-06",
+    "description": "중금속 10종 화학 특성, 오염원, 건강 영향, 국내외 수질 기준치",
+    "standards_references": {
+      "WHO": "WHO Guidelines for Drinking-water Quality (4th ed., 2017)",
+      "Korea_drinking": "수도법 시행규칙 [별표 1] 먹는물 수질기준 (환경부, 2024)",
+      "Korea_wastewater": "물환경보전법 시행규칙 [별표 13] 폐수 배출 허용기준 (환경부, 2024)"
+    }
+  },
+  "heavy_metals": [
+    {
+      "id": "Pb2+",
+      "name_kr": "납",
+      "name_en": "Lead",
+      "symbol": "Pb",
+      "valence": "+2",
+      "ionic_radius_pm": 119,
+      "atomic_weight": 207.2,
+      "speciation_notes": "수용액에서 Pb²⁺ 우세; pH>8에서 Pb(OH)₂, PbCO₃ 침전",
+      "precipitation_pH": 8.0,
+      "primary_charge": "cation",
+      "color_in_solution": "무색",
+      "common_sources": [
+        "납축전지 제조·재활용",
+        "도료·안료 생산",
+        "금속 도금·제련",
+        "납관 부식 (구형 배관)",
+        "광산 배수",
+        "휘발유 첨가제 (유류 오염지)"
+      ],
+      "health_effects": {
+        "acute": "구역질, 복통, 경련, 뇌손상",
+        "chronic": "신경독성(특히 소아 IQ 감소), 신장 손상, 빈혈, 발암(그룹 2A)",
+        "target_organs": ["신경계", "신장", "혈액계", "생식계"]
+      },
+      "standards": {
+        "WHO_drinking_mg_L": 0.01,
+        "Korea_drinking_mg_L": 0.01,
+        "Korea_wastewater_mg_L": 0.1,
+        "EU_drinking_mg_L": 0.01
+      },
+      "typical_contamination_range_mg_L": {
+        "industrial_wastewater": "1–500",
+        "mining_AMD": "0.1–200",
+        "groundwater_natural": "0.001–1"
+      },
+      "affinity_rank": {
+        "comment": "대부분의 흡착 소재에서 높은 친화성 (연질 산 Lewis acid)",
+        "best_materials": ["chitosan", "zeolite_4a", "hydroxyapatite", "iron_oxide"]
+      }
+    },
+    {
+      "id": "Cu2+",
+      "name_kr": "구리",
+      "name_en": "Copper",
+      "symbol": "Cu",
+      "valence": "+2",
+      "ionic_radius_pm": 73,
+      "atomic_weight": 63.5,
+      "speciation_notes": "pH<7에서 Cu²⁺ 우세; pH 7–10에서 Cu(OH)⁺, Cu(OH)₂; pH>10에서 CuO 침전",
+      "precipitation_pH": 7.0,
+      "primary_charge": "cation",
+      "color_in_solution": "청색",
+      "common_sources": [
+        "전기도금·금속 마감 공정",
+        "인쇄회로기판(PCB) 제조",
+        "광산 배수",
+        "살균제·살조제 사용",
+        "동관 부식",
+        "염색·섬유 산업"
+      ],
+      "health_effects": {
+        "acute": "구역질, 구토, 복통, 간 손상 (고농도 섭취)",
+        "chronic": "간경화, Wilson 병(유전적 취약자), 신장 손상",
+        "target_organs": ["간", "신장", "소화계"]
+      },
+      "standards": {
+        "WHO_drinking_mg_L": 2.0,
+        "Korea_drinking_mg_L": 1.0,
+        "Korea_wastewater_mg_L": 3.0,
+        "EU_drinking_mg_L": 2.0
+      },
+      "typical_contamination_range_mg_L": {
+        "industrial_wastewater": "5–1000",
+        "mining_AMD": "1–500",
+        "groundwater_natural": "0.001–0.1"
+      },
+      "affinity_rank": {
+        "comment": "중간 경도의 Lewis acid; 키토산 아미노기와 강한 킬레이트 형성",
+        "best_materials": ["chitosan", "zeolite_natural", "biochar_modified", "hydroxyapatite"]
+      }
+    },
+    {
+      "id": "Cd2+",
+      "name_kr": "카드뮴",
+      "name_en": "Cadmium",
+      "symbol": "Cd",
+      "valence": "+2",
+      "ionic_radius_pm": 95,
+      "atomic_weight": 112.4,
+      "speciation_notes": "pH<8에서 Cd²⁺ 우세; pH>8에서 Cd(OH)₂ 침전; CdCO₃ 형성 가능",
+      "precipitation_pH": 8.5,
+      "primary_charge": "cation",
+      "color_in_solution": "무색",
+      "common_sources": [
+        "니켈-카드뮴(Ni-Cd) 배터리",
+        "전기도금",
+        "안료·PVC 안정제",
+        "아연 제련 부산물",
+        "인산질 비료 불순물",
+        "담배 연기"
+      ],
+      "health_effects": {
+        "acute": "호흡기 자극, 구역질, 폐부종 (흡입)",
+        "chronic": "신장세관 손상(이타이이타이병), 골연화증, 폐암(그룹1 발암물질)",
+        "target_organs": ["신장", "뼈", "폐"]
+      },
+      "standards": {
+        "WHO_drinking_mg_L": 0.003,
+        "Korea_drinking_mg_L": 0.005,
+        "Korea_wastewater_mg_L": 0.1,
+        "EU_drinking_mg_L": 0.005
+      },
+      "typical_contamination_range_mg_L": {
+        "industrial_wastewater": "0.1–200",
+        "mining_AMD": "0.01–50",
+        "groundwater_natural": "0.0001–0.01"
+      },
+      "affinity_rank": {
+        "comment": "연질 Lewis acid; 이온반경이 커서 이온교환 소재에서의 선택성 낮음",
+        "best_materials": ["chitosan", "zeolite_natural", "biochar_modified"]
+      }
+    },
+    {
+      "id": "Cr3+",
+      "name_kr": "3가 크롬",
+      "name_en": "Chromium(III)",
+      "symbol": "Cr",
+      "valence": "+3",
+      "ionic_radius_pm": 62,
+      "atomic_weight": 52.0,
+      "speciation_notes": "pH<4에서 Cr³⁺ 우세; pH 4–7에서 Cr(OH)²⁺, Cr(OH)₂⁺; pH>7에서 Cr(OH)₃ 침전",
+      "precipitation_pH": 6.5,
+      "primary_charge": "cation",
+      "color_in_solution": "녹색",
+      "common_sources": [
+        "크롬 도금",
+        "피혁 무두질",
+        "스테인리스강 제조",
+        "방청 처리",
+        "Cr(VI)의 환원 생성물"
+      ],
+      "health_effects": {
+        "acute": "피부 자극, 위장 장애",
+        "chronic": "Cr(III)는 필수 미량원소이나 과잉 시 독성; 간·신장 손상",
+        "target_organs": ["간", "신장"]
+      },
+      "standards": {
+        "WHO_drinking_mg_L": 0.05,
+        "Korea_drinking_mg_L": 0.05,
+        "Korea_wastewater_mg_L": 2.0,
+        "EU_drinking_mg_L": 0.025,
+        "note": "기준치는 총 크롬(Cr-total) 기준"
+      },
+      "typical_contamination_range_mg_L": {
+        "industrial_wastewater": "1–100",
+        "mining_AMD": "0.01–10",
+        "groundwater_natural": "0.001–0.1"
+      },
+      "affinity_rank": {
+        "comment": "양이온이므로 이온교환·표면착화 소재에서 제거 용이",
+        "best_materials": ["zeolite_natural", "chitosan", "activated_carbon"]
+      }
+    },
+    {
+      "id": "Cr6+",
+      "name_kr": "6가 크롬",
+      "name_en": "Chromium(VI)",
+      "symbol": "Cr",
+      "valence": "+6",
+      "ionic_radius_pm": null,
+      "atomic_weight": 52.0,
+      "speciation_notes": "음이온성 산소산: pH<6에서 HCrO₄⁻; pH>6에서 CrO₄²⁻; 고농도에서 Cr₂O₇²⁻",
+      "precipitation_pH": "침전 안 됨 (환원 후 Cr³⁺으로 침전)",
+      "primary_charge": "anion",
+      "color_in_solution": "황색~주황색",
+      "common_sources": [
+        "크롬 도금 (불량 관리)",
+        "산화제 사용",
+        "목재 방부제(CCA)",
+        "페인트·안료",
+        "혁피 무두질 폐수"
+      ],
+      "health_effects": {
+        "acute": "피부·점막 궤양, 비중격 천공",
+        "chronic": "폐암(그룹1), 비강암, 신장·간 손상, 생식독성",
+        "target_organs": ["폐", "비강", "신장", "피부"]
+      },
+      "standards": {
+        "WHO_drinking_mg_L": 0.05,
+        "Korea_drinking_mg_L": 0.05,
+        "Korea_wastewater_mg_L": 0.5,
+        "EU_drinking_mg_L": 0.025
+      },
+      "typical_contamination_range_mg_L": {
+        "industrial_wastewater": "10–5000",
+        "mining_AMD": "0.01–5",
+        "groundwater_natural": "0.001–0.05"
+      },
+      "affinity_rank": {
+        "comment": "음이온이므로 특수 소재(철산화물, 키토산 산성조건, 환원성 활성탄) 필요",
+        "best_materials": ["iron_oxide", "chitosan_acidic", "activated_carbon", "biochar_modified"],
+        "special_note": "산성(pH 2–4)에서 제거 효율 최대; 철산화물에 의한 환원(Cr⁶⁺→Cr³⁺) 후 침전 가능"
+      }
+    },
+    {
+      "id": "Hg2+",
+      "name_kr": "수은",
+      "name_en": "Mercury",
+      "symbol": "Hg",
+      "valence": "+2",
+      "ionic_radius_pm": 102,
+      "atomic_weight": 200.6,
+      "speciation_notes": "Hg²⁺, 메틸수은(CH₃Hg⁺), Hg₂²⁺ 등 다양한 형태 존재; 유기수은이 더 독성 강함",
+      "precipitation_pH": 7.5,
+      "primary_charge": "cation",
+      "color_in_solution": "무색",
+      "common_sources": [
+        "형광등·수은 온도계 파손",
+        "염소-알칼리 공업",
+        "금 채굴 (아말감법)",
+        "페인트·살균제",
+        "치과용 아말감",
+        "전기·전자제품 폐기"
+      ],
+      "health_effects": {
+        "acute": "구내염, 신장독성, 신경독성",
+        "chronic": "미나마타병(유기수은), 신장 손상, 면역계 이상, 태아 신경독성",
+        "target_organs": ["신경계", "신장", "면역계", "태아"]
+      },
+      "standards": {
+        "WHO_drinking_mg_L": 0.006,
+        "Korea_drinking_mg_L": 0.001,
+        "Korea_wastewater_mg_L": 0.005,
+        "EU_drinking_mg_L": 0.001
+      },
+      "typical_contamination_range_mg_L": {
+        "industrial_wastewater": "0.01–100",
+        "mining_AMD": "0.001–1",
+        "groundwater_natural": "0.0001–0.01"
+      },
+      "affinity_rank": {
+        "comment": "연질(soft) Lewis acid로 황(S) 함유 관능기와 강한 친화성",
+        "best_materials": ["chitosan", "activated_carbon", "thiol_silica"],
+        "special_note": "티올(-SH) 변성 실리카/활성탄이 무기수은에 가장 효과적"
+      }
+    },
+    {
+      "id": "As3+",
+      "name_kr": "3가 비소",
+      "name_en": "Arsenic(III) / Arsenite",
+      "symbol": "As",
+      "valence": "+3",
+      "ionic_radius_pm": null,
+      "atomic_weight": 74.9,
+      "speciation_notes": "H₃AsO₃ 형태 (중성 분자); 음이온 흡착 어려움 → 산화(As(V)로 전환) 후 처리 권장",
+      "precipitation_pH": "침전 매우 어려움",
+      "primary_charge": "neutral_to_weak_anion",
+      "color_in_solution": "무색",
+      "common_sources": [
+        "지하수 자연 용출 (남아시아, 내몽골 등)",
+        "광산 배수",
+        "농약 잔류 (arsenical pesticides)",
+        "반도체·제련 공정"
+      ],
+      "health_effects": {
+        "acute": "위장염, 신경병증",
+        "chronic": "피부암·폐암·방광암(그룹1), 케라토시스, 보웬병, 말초혈관질환",
+        "target_organs": ["피부", "폐", "방광", "간", "신장"]
+      },
+      "standards": {
+        "WHO_drinking_mg_L": 0.01,
+        "Korea_drinking_mg_L": 0.01,
+        "Korea_wastewater_mg_L": 0.25,
+        "EU_drinking_mg_L": 0.01
+      },
+      "typical_contamination_range_mg_L": {
+        "industrial_wastewater": "0.1–50",
+        "mining_AMD": "0.01–10",
+        "groundwater_natural": "0.01–1"
+      },
+      "affinity_rank": {
+        "comment": "중성 분자이므로 이온교환 불리; MnO₂ 산화 → As(V)로 전환 후 철산화물 흡착이 표준",
+        "best_materials": ["mno2_then_iron_oxide", "iron_oxide", "biochar_activated"],
+        "special_note": "As(III)는 As(V)보다 독성 강하고 흡착 어려움; 산화 전처리 강력 권장"
+      }
+    },
+    {
+      "id": "As5+",
+      "name_kr": "5가 비소",
+      "name_en": "Arsenic(V) / Arsenate",
+      "symbol": "As",
+      "valence": "+5",
+      "ionic_radius_pm": null,
+      "atomic_weight": 74.9,
+      "speciation_notes": "H₂AsO₄⁻ (pH<7), HAsO₄²⁻ (pH 7–11); 음이온 → 철산화물 내권 착화에 의한 제거 효과적",
+      "precipitation_pH": "Al, Fe 공침 가능",
+      "primary_charge": "anion",
+      "color_in_solution": "무색",
+      "common_sources": ["As(III) 산화 생성물", "인산염 함유 지하수", "농약 분해"],
+      "health_effects": {
+        "acute": "As(III)보다 독성 낮음",
+        "chronic": "발암성 (그룹1), 피부·폐·방광 암",
+        "target_organs": ["피부", "폐", "방광"]
+      },
+      "standards": {
+        "WHO_drinking_mg_L": 0.01,
+        "Korea_drinking_mg_L": 0.01,
+        "Korea_wastewater_mg_L": 0.25,
+        "EU_drinking_mg_L": 0.01
+      },
+      "typical_contamination_range_mg_L": {
+        "industrial_wastewater": "0.1–50",
+        "mining_AMD": "0.01–5",
+        "groundwater_natural": "0.001–0.5"
+      },
+      "affinity_rank": {
+        "comment": "음이온성이지만 철산화물 ≡FeOH와 내권 이성분자 핵결합으로 매우 효과적 제거",
+        "best_materials": ["iron_oxide", "biochar_activated", "mno2"]
+      }
+    },
+    {
+      "id": "Zn2+",
+      "name_kr": "아연",
+      "name_en": "Zinc",
+      "symbol": "Zn",
+      "valence": "+2",
+      "ionic_radius_pm": 74,
+      "atomic_weight": 65.4,
+      "speciation_notes": "pH<8에서 Zn²⁺ 우세; pH>8에서 Zn(OH)₂, ZnCO₃ 침전",
+      "precipitation_pH": 8.0,
+      "primary_charge": "cation",
+      "color_in_solution": "무색",
+      "common_sources": [
+        "아연 도금 (galvanizing)",
+        "합금 (황동·청동) 제조",
+        "광산 배수",
+        "고무 제조",
+        "페인트·안료"
+      ],
+      "health_effects": {
+        "acute": "고농도 시 구역질, 복통 (4–8 mg/L 이상)",
+        "chronic": "상대적으로 낮은 독성이나 Cu/Fe 흡수 억제",
+        "target_organs": ["소화계", "면역계"]
+      },
+      "standards": {
+        "WHO_drinking_mg_L": 4.0,
+        "Korea_drinking_mg_L": 3.0,
+        "Korea_wastewater_mg_L": 5.0,
+        "EU_drinking_mg_L": null,
+        "note": "WHO 기준은 심미적 기준 (맛/냄새)"
+      },
+      "typical_contamination_range_mg_L": {
+        "industrial_wastewater": "1–1000",
+        "mining_AMD": "0.1–200",
+        "groundwater_natural": "0.001–1"
+      },
+      "affinity_rank": {
+        "comment": "중간 Lewis acid; Pb·Cu보다 흡착 선택성 낮음",
+        "best_materials": ["zeolite_natural", "chitosan", "biochar_modified"]
+      }
+    },
+    {
+      "id": "Ni2+",
+      "name_kr": "니켈",
+      "name_en": "Nickel",
+      "symbol": "Ni",
+      "valence": "+2",
+      "ionic_radius_pm": 69,
+      "atomic_weight": 58.7,
+      "speciation_notes": "pH<8에서 Ni²⁺ 우세; pH>8에서 Ni(OH)₂ 침전",
+      "precipitation_pH": 8.0,
+      "primary_charge": "cation",
+      "color_in_solution": "연녹색",
+      "common_sources": [
+        "니켈 도금",
+        "배터리(NiMH, Ni-Cd) 제조·폐기",
+        "스테인리스강·합금 제조",
+        "석유 정제 촉매",
+        "코인 주조"
+      ],
+      "health_effects": {
+        "acute": "피부 알레르기(접촉성 피부염)",
+        "chronic": "호흡기 암(폐·비강, 그룹1), 신장 손상",
+        "target_organs": ["폐", "비강", "신장", "피부"]
+      },
+      "standards": {
+        "WHO_drinking_mg_L": 0.07,
+        "Korea_drinking_mg_L": 0.02,
+        "Korea_wastewater_mg_L": 3.0,
+        "EU_drinking_mg_L": 0.02
+      },
+      "typical_contamination_range_mg_L": {
+        "industrial_wastewater": "1–200",
+        "mining_AMD": "0.01–10",
+        "groundwater_natural": "0.001–0.1"
+      },
+      "affinity_rank": {
+        "comment": "경질(hard) Lewis acid 경향; 이온반경 작아 이온교환 소재에서 Pb·Cu에 비해 선택성 낮음",
+        "best_materials": ["chitosan", "zeolite_natural"]
+      }
+    }
+  ]
+}
